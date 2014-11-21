@@ -1,0 +1,6 @@
+１＼编译命令
+g++ -Wall main.cpp ./libs/lib_mongoose.a  -o ./output/httpserver -lpthread
+
+
+//拆分为makefile
+g++ -Wall main.cpp main.o ./libs/lib_mongoose.a -lpthread

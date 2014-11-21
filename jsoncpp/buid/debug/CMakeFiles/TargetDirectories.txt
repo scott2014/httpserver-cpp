@@ -1,0 +1,5 @@
+/home/scott/cpp/httpserver-cpp/jsoncpp/jsoncpp/buid/debug/src/jsontestrunner/CMakeFiles/jsoncpp_check.dir
+/home/scott/cpp/httpserver-cpp/jsoncpp/jsoncpp/buid/debug/src/lib_json/CMakeFiles/jsoncpp_lib.dir
+/home/scott/cpp/httpserver-cpp/jsoncpp/jsoncpp/buid/debug/src/jsontestrunner/CMakeFiles/jsoncpp_readerwriter_tests.dir
+/home/scott/cpp/httpserver-cpp/jsoncpp/jsoncpp/buid/debug/src/test_lib_json/CMakeFiles/jsoncpp_test.dir
+/home/scott/cpp/httpserver-cpp/jsoncpp/jsoncpp/buid/debug/src/jsontestrunner/CMakeFiles/jsontestrunner_exe.dir
