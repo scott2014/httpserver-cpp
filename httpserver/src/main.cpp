@@ -10,6 +10,7 @@
 #include "../include/mysql++.h"
 #include "../include/StreamResponse.h"
 #include "../include/options.h"
+#include "../include/row.h"
 //#include <tchar.h>
 
 using namespace std;
@@ -124,11 +125,57 @@ class MyController : public WebController
             }
         };
 
+        void login(Request &request,StreamResponse &response) {
+            string body = request.getData();
+            cout << "body = " << body << endl;
+            Json::Reader reader;
+            Json::Value value;
+
+            if (reader.parse(body,value)) {
+                string username = value["username"].asString();
+                string passwd = value["passwd"].asString();
+
+                cout << "username = " << username << endl;
+                cout << "passwd = " << passwd << endl;
+
+                Connection conn = Connection(false);
+                conn.set_option(new SetCharsetNameOption("utf8"));
+                conn.connect("cpp","127.0.0.1","root","root");
+
+                string sql = "select count(*) from t_user where username = '" + username + "' and passwd = '" + passwd + "'";
+                cout << "sql = " << sql << endl;
+                Query query = conn.query();
+                query << sql;
+                StoreQueryResult result = query.store();
+                //mysqlpp::StoreQueryResult::list_type::size_type r = result.num_rows();
+               // Row row = result.fetch_row();
+               // Row::const_reference count = row.at(0);
+                //cout << "count = " << count << endl;
+               //string field_name = result.field_name(0);
+               //cout << "field_name = " << field_name << endl;
+              //  Row row = result.fetch_row();
+            //    cout << row.begin() << endl;
+                StoreQueryResult::const_iterator it = result.begin();
+             
+                Row row = *it;
+                if (it != result.end()) {
+                    if (row[0]) {
+                        response << "0" << endl;
+                    } else {
+                        response << "1" << endl;
+                    }
+                    //cout << "cout = " << row[0] << endl;
+                }
+              //  cout << "count = " << *it[0] << endl;
+            }
+        }
+
         void setup()
         {
            // addRoute("GET", "/hello", MyController, hello);
             addRoute("POST","/hello",MyController,hello);
             addRoute("POST","/reg",MyController,reg);
+            addRoute("POST","/login",MyController,login);
         }
 
 
